@@ -1,0 +1,8 @@
+author = ""
+cart = "xmas.p8"
+description = ""
+name = "xmas is coming"
+open_pico = true
+src_dir = "src"
+version = "1.0.0"
+watch = true
