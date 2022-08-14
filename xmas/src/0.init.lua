@@ -13,6 +13,13 @@ function _draw()
     
     --background
     map(16,0,0,0,16,16)
+
+    --middleground
+    pal(13, 0)
+    map(32,0,0,0,16,16)
+    pal()
+
+    draw_logo()
     
     --foreground
     map(0,0,0,0,16,16)
