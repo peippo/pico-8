@@ -9,7 +9,13 @@ function _init()
 end
    
 function _draw()
-    cls(1)
+    cls(0)
+    
+    --background
+    map(16,0,0,0,16,16)
+    
+    --foreground
+    map(0,0,0,0,16,16)
     
     add_flake()
 
