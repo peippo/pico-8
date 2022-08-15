@@ -6,6 +6,7 @@ function _init()
     flake_colors = {5, 6, 7}
     wind_speeds = {-0.4, -0.2, 0, 0.2, 0.4}
     wind = rnd(wind_speeds)
+    days_to_go = calculate_days()
 end
    
 function _draw()
@@ -25,6 +26,7 @@ function _draw()
     map(0,0,0,0,16,16)
     
     add_flake()
+    print_days_to_go()
 
     for flake in all(flakes) do
         flake:draw()
