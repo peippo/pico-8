@@ -25,8 +25,6 @@ function calculate_days()
     days_passed = 0
 
     for i = 1, month do
-        printh(i)
-
         if i < month then
             days_passed += days_in_months[i]
         end

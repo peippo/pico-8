@@ -24,6 +24,8 @@ function _draw()
     
     --foreground
     map(0,0,0,0,16,16)
+    --stairs
+    sspr(32, 32, 48, 32, 72, 80)
     
     add_flake()
     print_days_to_go()
