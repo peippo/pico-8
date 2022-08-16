@@ -6,6 +6,7 @@ __lua__
 
 function _init()
     flakes = {}
+    ground_flakes = {}
     flake_colors = {5, 6, 7}
     wind_speeds = {-0.4, -0.2, 0, 0.2, 0.4}
     wind = rnd(wind_speeds)
@@ -36,6 +37,10 @@ function _draw()
     for flake in all(flakes) do
         flake:draw()
     end
+
+    for flake in all(ground_flakes) do
+        flake:draw()
+    end
 end
 
 function _update60()
@@ -43,6 +48,10 @@ function _update60()
 
     for flake in all(flakes) do
         flake:update(wind)
+    end
+
+    for flake in all(ground_flakes) do
+        flake:update()
     end
 end
 -->8
@@ -61,10 +70,28 @@ function add_flake()
             self.x = self.x + wind + sin(time() * rnd(3))
             self.y += rnd(2)
 
-            if (self.y > 128) then
+            if (self.y > 112) then
+                add_ground_flake(self.x, self.color)
                 del(flakes, self)
             end
         end
+    })
+end
+
+function add_ground_flake(_x)
+    add(ground_flakes, {
+        x = _x,
+        y = 111,
+        timer = t() + 4,
+        draw = function(self)
+            circfill(self.x, self.y, 0, 6)
+        end,
+        update = function(self)
+            if (self.timer == t()) then
+                del(ground_flakes, self)
+            end
+        end
+
     })
 end
 

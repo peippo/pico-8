@@ -3,6 +3,7 @@
 
 function _init()
     flakes = {}
+    ground_flakes = {}
     flake_colors = {5, 6, 7}
     wind_speeds = {-0.4, -0.2, 0, 0.2, 0.4}
     wind = rnd(wind_speeds)
@@ -33,6 +34,10 @@ function _draw()
     for flake in all(flakes) do
         flake:draw()
     end
+
+    for flake in all(ground_flakes) do
+        flake:draw()
+    end
 end
 
 function _update60()
@@ -40,5 +45,9 @@ function _update60()
 
     for flake in all(flakes) do
         flake:update(wind)
+    end
+
+    for flake in all(ground_flakes) do
+        flake:update()
     end
 end
