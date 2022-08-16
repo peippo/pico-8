@@ -4,6 +4,7 @@
 function _init()
     flakes = {}
     ground_flakes = {}
+    snowman = make_snowman()
     flake_colors = {5, 6, 7}
     wind_speeds = {-0.4, -0.2, 0, 0.2, 0.4}
     wind = rnd(wind_speeds)
@@ -29,6 +30,7 @@ function _draw()
     sspr(32, 32, 48, 32, 72, 80)
     
     add_flake()
+    snowman:draw()
     print_days_to_go()
 
     for flake in all(flakes) do
@@ -42,6 +44,7 @@ end
 
 function _update60()
     randomize_wind()
+    snowman:update()
 
     for flake in all(flakes) do
         flake:update(wind)
