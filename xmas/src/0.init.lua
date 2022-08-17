@@ -10,6 +10,7 @@ function _init()
     wind_speeds = {-0.4, -0.2, 0, 0.2, 0.4}
     wind = rnd(wind_speeds)
     days_to_go = calculate_days()
+    scroller = init_scroller("ho ho ho, it's august and 30^c outside so naturally the first idea for a pico-8 introductory project was to do a christmas countdown! pico-8 is a fantasy video game console that mimics the limited capabilities of 8-bit systems of the 1980s, we have a resolution of 128x128 pixels with 16 colors and four channels for chiptune sounds - seems really fun to play around with, try it out!")
 end
    
 function _draw()
@@ -39,6 +40,7 @@ function _draw()
     print_days_to_go()
     
     snowman:draw()
+    scroller:draw()
 
     for flake in all(flakes) do
         flake:draw()

@@ -13,6 +13,7 @@ function _init()
     wind_speeds = {-0.4, -0.2, 0, 0.2, 0.4}
     wind = rnd(wind_speeds)
     days_to_go = calculate_days()
+    scroller = init_scroller("ho ho ho, it's august and 30^c outside so naturally the first idea for a pico-8 introductory project was to do a christmas countdown! pico-8 is a fantasy video game console that mimics the limited capabilities of 8-bit systems of the 1980s, we have a resolution of 128x128 pixels with 16 colors and four channels for chiptune sounds - seems really fun to play around with, try it out!")
 end
    
 function _draw()
@@ -42,6 +43,7 @@ function _draw()
     print_days_to_go()
     
     snowman:draw()
+    scroller:draw()
 
     for flake in all(flakes) do
         flake:draw()
@@ -295,6 +297,36 @@ function add_smoke()
             end
         end
     })
+end
+-->8
+-- text scroller
+-- based on https://demobasics.pixienop.net/
+
+function init_scroller(_text)
+    return {
+        text = _text,
+        x_add = 0,
+
+        speed = 30,
+        draw = function(self)
+            local t1 = time()
+
+            last_letter_x = (128 + self.x_add - t1 * self.speed) + (#self.text) * 4
+
+            if last_letter_x < 0 then
+                self.x_add += 128
+                self.x_add += (#self.text) * 4
+            end
+
+            for i = 1, #self.text, 1 do
+                letter = sub(self.text, i, i)
+                letter_t = t1 - (0.1 * i)
+                base_x = 128 + self.x_add - t1 * self.speed
+
+                print(letter, base_x + i * 4, 10 + sin(letter_t * 0.5) * 3.9, 13)
+            end
+        end
+    }
 end
 -->8
 -- utility functions
