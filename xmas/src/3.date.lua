@@ -53,7 +53,7 @@ function print_days_to_go()
         print(days_to_go, 14)
 
         -- text
-        x = 18
+        local x = 18
 
         if days_to_go > 99 then
             x = 25

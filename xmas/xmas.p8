@@ -13,7 +13,7 @@ function _init()
     wind_speeds = {-0.4, -0.2, 0, 0.2, 0.4}
     wind = rnd(wind_speeds)
     days_to_go = calculate_days()
-    scroller = init_scroller("ho ho ho, it's august and 30^c outside so naturally the first idea for a pico-8 introductory project was to do a christmas countdown! pico-8 is a fantasy video game console that mimics the limited capabilities of 8-bit systems of the 1980s, we have a resolution of 128x128 pixels with 16 colors and four channels for chiptune sounds - seems really fun to play around with, try it out!")
+    scroller = init_scroller("ho ho ho, it's august and 30^c outside so naturally the first idea for a pico-8 introductory project was to do a christmas countdown!")
 end
    
 function _draw()
@@ -112,7 +112,7 @@ function add_ground_flake(_x)
 end
 
 function randomize_wind()
-    change_wind = time() % 5 == 0
+    local change_wind = time() % 5 == 0
 
     if change_wind then
         wind = rnd(wind_speeds)
@@ -123,11 +123,11 @@ end
 
 function draw_logo()
     for i = 0, 4 do
-        t1 = t() * 30 + i * 4
+        local t1 = t() * 30 + i * 4
         
         -- shadow
-        x = i * 32 + cos(t1 / 90) * 3
-        y = 34 + cos(t1 / 50) * 3 + 3
+        local x = i * 32 + cos(t1 / 90) * 3
+        local y = 34 + cos(t1 / 50) * 3 + 3
 
         pal(2, 0)
         pal(14, 0)
@@ -139,7 +139,6 @@ function draw_logo()
         y = 34 + cos(t1 / 50) * 4
 
         sspr(i * 32, 64, 32, 32, x, y)
-
     end
 end
 -->8
@@ -199,7 +198,7 @@ function print_days_to_go()
         print(days_to_go, 14)
 
         -- text
-        x = 18
+        local x = 18
 
         if days_to_go > 99 then
             x = 25
@@ -306,7 +305,6 @@ function init_scroller(_text)
     return {
         text = _text,
         x_add = 0,
-
         speed = 30,
         draw = function(self)
             local t1 = time()

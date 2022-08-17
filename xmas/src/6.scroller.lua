@@ -5,7 +5,6 @@ function init_scroller(_text)
     return {
         text = _text,
         x_add = 0,
-
         speed = 30,
         draw = function(self)
             local t1 = time()

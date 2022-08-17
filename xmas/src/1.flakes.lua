@@ -39,7 +39,7 @@ function add_ground_flake(_x)
 end
 
 function randomize_wind()
-    change_wind = time() % 5 == 0
+    local change_wind = time() % 5 == 0
 
     if change_wind then
         wind = rnd(wind_speeds)
