@@ -4,6 +4,7 @@
 function _init()
     flakes = {}
     ground_flakes = {}
+    smokes = {}
     snowman = make_snowman()
     flake_colors = {5, 6, 7}
     wind_speeds = {-0.4, -0.2, 0, 0.2, 0.4}
@@ -23,6 +24,10 @@ function _draw()
     pal()
 
     draw_logo()
+
+    for smoke in all(smokes) do
+        smoke:draw()
+    end
     
     --foreground
     map(0,0,0,0,16,16)
@@ -30,8 +35,10 @@ function _draw()
     sspr(32, 32, 48, 32, 72, 80)
     
     add_flake()
-    snowman:draw()
+    add_smoke()
     print_days_to_go()
+    
+    snowman:draw()
 
     for flake in all(flakes) do
         flake:draw()
@@ -52,5 +59,9 @@ function _update60()
 
     for flake in all(ground_flakes) do
         flake:update()
+    end
+
+    for smoke in all(smokes) do
+        smoke:update(wind)
     end
 end

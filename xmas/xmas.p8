@@ -7,6 +7,7 @@ __lua__
 function _init()
     flakes = {}
     ground_flakes = {}
+    smokes = {}
     snowman = make_snowman()
     flake_colors = {5, 6, 7}
     wind_speeds = {-0.4, -0.2, 0, 0.2, 0.4}
@@ -26,6 +27,10 @@ function _draw()
     pal()
 
     draw_logo()
+
+    for smoke in all(smokes) do
+        smoke:draw()
+    end
     
     --foreground
     map(0,0,0,0,16,16)
@@ -33,8 +38,10 @@ function _draw()
     sspr(32, 32, 48, 32, 72, 80)
     
     add_flake()
-    snowman:draw()
+    add_smoke()
     print_days_to_go()
+    
+    snowman:draw()
 
     for flake in all(flakes) do
         flake:draw()
@@ -55,6 +62,10 @@ function _update60()
 
     for flake in all(ground_flakes) do
         flake:update()
+    end
+
+    for smoke in all(smokes) do
+        smoke:update(wind)
     end
 end
 -->8
@@ -235,6 +246,32 @@ function make_snowman()
             if self.sprite >= 42 then self.sprite = 39 end
         end
     }
+end
+-->8
+-- chimney smoke
+
+function add_smoke()
+    add(smokes, {
+        spread = rnd(2),
+        life = rnd(15),
+        x = random(94, 98),
+        y = 60,
+        color = flr(random(5,6)),
+        size = 3,
+        draw = function(self)
+            pset(self.x, self.y, self.color)
+        end,
+        update = function(self, wind)
+            if (time() % 0.25 == 0) then
+                self.x += wind
+                self.y -= self.spread
+                self.life -= 1
+            end
+            if self.life < 0 then
+                del(smokes, self)
+            end
+        end
+    })
 end
 -->8
 -- utility functions
