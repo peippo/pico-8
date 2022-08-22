@@ -1,0 +1,8 @@
+author = ""
+cart = "sushi_worm.p8"
+description = ""
+name = "sushi-worm"
+open_pico = true
+src_dir = "src"
+version = "1.0.0"
+watch = true
