@@ -10,10 +10,11 @@ function init_worm()
         dir = 90,
         draw = function(self)
             for p in all(self.worm) do
-                pset(p.x,p.y,14)
+                pset(p.x,p.y,1)
             end
             
-            print(self.dir, 5, 5, 6)
+            print(self.dir, 10, 4, 1)
+            print(self.dir, 10, 3, 15)
         end,
         update = function(self)
             local pixel = {}
@@ -62,10 +63,10 @@ function init_worm()
             if (self.dir < 0) then self.dir = 360 end
 
             -- wrap around edges
-            if (self.x > 127) then self.x = 0 end
-            if (self.y > 127) then self.y = 0 end
-            if (self.x < 0) then self.x = 127 end
-            if (self.y < 0) then self.y = 127 end
+            if (self.x > 119) then self.x = 10 end
+            if (self.y > 119) then self.y = 11 end
+            if (self.x < 9) then self.x = 120 end
+            if (self.y < 10) then self.y = 120 end
 
             -- worm length
             if (#self.worm > self.length) then deli(self.worm, 1) end

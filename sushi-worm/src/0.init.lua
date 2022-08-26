@@ -9,6 +9,7 @@ function _update()
 end
 
 function _draw()
-    cls(1)
+    cls(0)
+    map(0,0,0,0,16,16)
     worm:draw()
 end
