@@ -1,21 +1,3 @@
-pico-8 cartridge // http://www.pico-8.com
-version 36
-__lua__
---sushi-worm
-
-function _init()
-    worm = init_worm()
-end
-
-function _update()
-    worm:update()
-end
-
-function _draw()
-    cls(1)
-    worm:draw()
-end
--->8
 -- worm
 
 function init_worm()
@@ -90,4 +72,3 @@ function init_worm()
         end
     }
 end
-

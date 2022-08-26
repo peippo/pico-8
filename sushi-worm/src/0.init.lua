@@ -1,16 +1,14 @@
 --sushi-worm
 
-x=64
-y=64
+function _init()
+    worm = init_worm()
+end
 
 function _update()
- if (btn(0)) then x-=1 end
- if (btn(1)) then x+=1 end
- if (btn(2)) then y-=1 end
- if (btn(3)) then y+=1 end
+    worm:update()
 end
 
 function _draw()
- rectfill(0,0,127,127,5)
- circfill(x,y,7,14)
+    cls(1)
+    worm:draw()
 end
