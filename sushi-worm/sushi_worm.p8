@@ -5,6 +5,7 @@ __lua__
 
 function _init()
     worm = init_worm()
+    sushi = init_sushi()
 end
 
 function _update()
@@ -15,31 +16,32 @@ function _draw()
     cls(0)
     map(0,0,0,0,16,16)
     worm:draw()
+    sushi:draw()
 end
 -->8
 -- worm
 
 function init_worm()
     return {
-        worm = {},
+        body = {},
         x = 64,
         y = 64,
         length = 10,
         turn_speed = 10,
         dir = 90,
         draw = function(self)
-            for p in all(self.worm) do
+            for p in all(self.body) do
                 pset(p.x,p.y,1)
             end
             
             print(self.dir, 10, 4, 1)
-            print(self.dir, 10, 3, 15)
+            print(self.dir, 10, 3, 15)            
         end,
         update = function(self)
             local pixel = {}
 
             if (self.dir >= 0 and self.dir <= 89) then
-                add(self.worm, {
+                add(self.body, {
                     x = self.x+1,
                     y = self.y-1
                 })
@@ -48,7 +50,7 @@ function init_worm()
             end
 
             if (self.dir >= 90 and self.dir <= 179) then
-                add(self.worm, {
+                add(self.body, {
                     x = self.x+1,
                     y = self.y+1
                 })
@@ -57,7 +59,7 @@ function init_worm()
             end
 
             if (self.dir >= 179 and self.dir <= 269) then
-                add(self.worm, {
+                add(self.body, {
                     x = self.x-1,
                     y = self.y+1
                 })
@@ -66,7 +68,7 @@ function init_worm()
             end
 
             if (self.dir >= 269 and self.dir <= 360) then
-                add(self.worm, {
+                add(self.body, {
                     x = self.x-1,
                     y = self.y-1
                 })
@@ -87,10 +89,63 @@ function init_worm()
             if (self.x < 9) then self.x = 120 end
             if (self.y < 10) then self.y = 120 end
 
-            -- worm length
-            if (#self.worm > self.length) then deli(self.worm, 1) end
+            -- body length
+            if (#self.body > self.length) then deli(self.body, 1) end
+
+            -- check for sushi collect
+            if self.x > sushi.x
+            and self.x < sushi.x + 8
+            and self.y > sushi.y
+            and self.y < sushi.y + 8
+            then
+                sushi:collect()
+            end
         end
     }
+end
+-->8
+-- sushi
+
+function init_sushi()
+    return {
+        x = 20,
+        y = 20,
+        sprite = get_random_sprite(),
+        draw = function(self)            
+            -- shadow
+            for c=0,15 do
+                pal(c, 0)
+            end
+            spr(self.sprite, self.x, self.y + 1)
+            pal()
+
+            -- sprite
+            spr(self.sprite, self.x, self.y)
+        end,
+        collect = function(self)
+            self.sprite = get_random_sprite()
+
+            local pos = get_random_position()
+            self.x = pos.x
+            self.y = pos.y
+
+            worm.length+=5
+        end
+
+    }
+end
+
+function get_random_sprite()
+    return flr(rnd(5) + 1)
+end
+
+
+function get_random_position()
+    local pos = {}
+    pos.x = rnd(88) + 20
+    pos.y = rnd(88) + 20
+
+    return pos
 end
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000

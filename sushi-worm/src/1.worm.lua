@@ -2,25 +2,25 @@
 
 function init_worm()
     return {
-        worm = {},
+        body = {},
         x = 64,
         y = 64,
         length = 10,
         turn_speed = 10,
         dir = 90,
         draw = function(self)
-            for p in all(self.worm) do
+            for p in all(self.body) do
                 pset(p.x,p.y,1)
             end
             
             print(self.dir, 10, 4, 1)
-            print(self.dir, 10, 3, 15)
+            print(self.dir, 10, 3, 15)            
         end,
         update = function(self)
             local pixel = {}
 
             if (self.dir >= 0 and self.dir <= 89) then
-                add(self.worm, {
+                add(self.body, {
                     x = self.x+1,
                     y = self.y-1
                 })
@@ -29,7 +29,7 @@ function init_worm()
             end
 
             if (self.dir >= 90 and self.dir <= 179) then
-                add(self.worm, {
+                add(self.body, {
                     x = self.x+1,
                     y = self.y+1
                 })
@@ -38,7 +38,7 @@ function init_worm()
             end
 
             if (self.dir >= 179 and self.dir <= 269) then
-                add(self.worm, {
+                add(self.body, {
                     x = self.x-1,
                     y = self.y+1
                 })
@@ -47,7 +47,7 @@ function init_worm()
             end
 
             if (self.dir >= 269 and self.dir <= 360) then
-                add(self.worm, {
+                add(self.body, {
                     x = self.x-1,
                     y = self.y-1
                 })
@@ -68,8 +68,17 @@ function init_worm()
             if (self.x < 9) then self.x = 120 end
             if (self.y < 10) then self.y = 120 end
 
-            -- worm length
-            if (#self.worm > self.length) then deli(self.worm, 1) end
+            -- body length
+            if (#self.body > self.length) then deli(self.body, 1) end
+
+            -- check for sushi collect
+            if self.x > sushi.x
+            and self.x < sushi.x + 8
+            and self.y > sushi.y
+            and self.y < sushi.y + 8
+            then
+                sushi:collect()
+            end
         end
     }
 end
