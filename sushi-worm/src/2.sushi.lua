@@ -23,7 +23,8 @@ function init_sushi()
             self.x = pos.x
             self.y = pos.y
 
-            worm.length+=5
+            worm.length+=10
+            score+=1
         end
 
     }

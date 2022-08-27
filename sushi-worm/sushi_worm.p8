@@ -6,6 +6,7 @@ __lua__
 function _init()
     worm = init_worm()
     sushi = init_sushi()
+    score = 0
 end
 
 function _update()
@@ -36,9 +37,10 @@ function _draw()
     line(119,9,119,119,4)
     line(8,9,8,119,0)
 
-    -- debug info
-    print(worm.dir, 10, 4, 1)
-    print(worm.dir, 10, 3, 15)  
+    print("sushi worm", 78, 4, 1)
+    print("sushi worm", 78, 3, 15)
+    print("score " .. score, 10, 4, 1)
+    print("score " .. score, 10, 3, 7)
 end
 -->8
 -- worm
@@ -149,7 +151,8 @@ function init_sushi()
             self.x = pos.x
             self.y = pos.y
 
-            worm.length+=5
+            worm.length+=10
+            score+=1
         end
 
     }
