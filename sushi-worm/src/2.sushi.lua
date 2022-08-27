@@ -30,7 +30,7 @@ function init_sushi()
 end
 
 function get_random_sprite()
-    return flr(rnd(5) + 1)
+    return flr(rnd(6) + 1)
 end
 
 

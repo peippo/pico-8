@@ -10,11 +10,9 @@ function init_worm()
         dir = 90,
         draw = function(self)
             for p in all(self.body) do
+                circfill(p.x,p.y,1,15)
                 pset(p.x,p.y,1)
-            end
-            
-            print(self.dir, 10, 4, 1)
-            print(self.dir, 10, 3, 15)            
+            end          
         end,
         update = function(self)
             local pixel = {}
