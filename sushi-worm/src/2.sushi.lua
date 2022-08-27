@@ -2,8 +2,8 @@
 
 function init_sushi()
     return {
-        x = 20,
-        y = 20,
+        x = 68,
+        y = 91,
         sprite = get_random_sprite(),
         draw = function(self)            
             -- shadow
