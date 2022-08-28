@@ -6,6 +6,7 @@ function _init()
     sushi = init_sushi()
     splatter = init_splatter()
     score = 0
+    music(0)
 end
 
 function _update()
@@ -15,6 +16,7 @@ function _update()
 
     if state == "game" then
         worm:update()
+        music(-1, 600)
     end
 end
 

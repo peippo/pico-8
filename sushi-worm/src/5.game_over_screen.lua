@@ -25,7 +25,7 @@ game_over_screen = {
         print("\131", 33, timer < 0.5 and 46 + top or 47 + top, 14)
 
         if (btn(5)) state = "game"
-        if (btn(3)) state = "title"
+        if (btn(3)) _init()
 
         if (btn(5) or btn(3)) then
             worm:reset()

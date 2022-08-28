@@ -19,6 +19,11 @@ function init_worm()
             self.alive = true
             score = 0
         end,
+        die = function(self)
+            self.alive = false
+            sfx(1)
+            sfx(2)
+        end,
         draw = function(self)
             for p in all(self.body) do
                 circfill(p.x,p.y,1,p.col)
@@ -57,7 +62,7 @@ function init_worm()
                         and self.body[i].y > self.y - 1
                         and self.body[i].y < self.y + 1
                         then
-                            self.alive = false
+                            self:die()
                         end
                     end
                 end
@@ -68,7 +73,7 @@ function init_worm()
                 or self.x < 9
                 or self.y < 10
                 then
-                    self.alive = false
+                    self:die()
                 end
 
                 -- body length

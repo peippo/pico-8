@@ -25,6 +25,7 @@ function init_sushi()
 
             worm.length+=10
             score+=1
+            sfx(0)
         end
 
     }

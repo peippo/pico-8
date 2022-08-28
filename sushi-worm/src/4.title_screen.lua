@@ -21,7 +21,10 @@ title_screen = {
 
         line(80, 102, 85, 102, 0)
 
-        if (btn(5)) state = "game"
+        if (btn(5)) then
+            sfx(3)
+            state = "game"
+        end
     end,
     update = function(self)
     end
