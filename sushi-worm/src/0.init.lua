@@ -51,5 +51,9 @@ function _draw()
         print("sushi worm", 78, 3, 15)
         print("score " .. score, 10, 4, 1)
         print("score " .. score, 10, 3, 7)
+
+        if not worm.alive then
+            game_over_screen:draw()
+        end
     end
 end

@@ -10,6 +10,15 @@ function init_worm()
         angle = 315,
         palette = {3,3,3,3,3,11,11,11,11,11},
         alive = true,
+        reset = function(self)
+            self.body = {}
+            self.x = 20
+            self.y = 20
+            self.length = 10
+            self.angle = 315
+            self.alive = true
+            score = 0
+        end,
         draw = function(self)
             for p in all(self.body) do
                 circfill(p.x,p.y,1,p.col)

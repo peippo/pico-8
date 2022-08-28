@@ -4,6 +4,9 @@ function init_splatter()
     return {
         size = 0,
         max_size = 5,
+        reset = function(self)
+            self.size = 0
+        end,
         draw = function(self, _x, _y)
             circfill(_x, _y, self.size, 2)
         end,
