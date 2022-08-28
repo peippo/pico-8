@@ -5,7 +5,7 @@ function init_worm()
         body = {},
         x = 20,
         y = 20,
-        length = 50,
+        length = 10,
         turn_speed = 10,
         angle = 315,
         palette = {3,3,3,3,3,11,11,11,11,11},
