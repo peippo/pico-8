@@ -3,6 +3,7 @@
 function _init()
     worm = init_worm()
     sushi = init_sushi()
+    splatter = init_splatter()
     score = 0
 end
 
